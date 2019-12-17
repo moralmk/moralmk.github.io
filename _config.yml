@@ -31,6 +31,8 @@ theme: minima
 plugins:
   - jekyll-feed
 
+google_analytics: UA-154745257-1
+
 social:
   name: Donghwa Lee
   links:
