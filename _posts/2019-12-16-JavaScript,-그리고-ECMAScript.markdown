@@ -2,7 +2,7 @@
 layout: post
 title:  "JavaScript, 그리고 ECMAScript"
 date:   2019-12-16 09:45:01 +0900
-categories: es
+categories: javascript
 ---
 # **JavaScript의 Java는 대체 왜?**
 JavaScript의 **Java**는 우리가 흔히 아는 Java와 전혀 상관이 없습니다. 1995년 당시 Java의 인기를 얻어 걸린 듯 같이 한번 누려보겠다는 일종의 마케팅 꼼수에서 생겨난 이름입니다.
