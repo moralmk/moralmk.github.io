@@ -23,16 +23,34 @@ email: moralmk@gmail.com
 author: Donghwa Lee
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://moralmk.github.io/" # the base hostname & protocol for your site, e.g. http://example.com
-# twitter_username: jekyllrb
-github_username:  moralmk
 
 # Build settings
 theme: minima
 plugins:
   - jekyll-feed
+  - jekyll-seo-tag
 
 minima:
   date_format: "%Y년 %m월 %d일"
+  skin: classic
+  # generate social links in footer
+  social_links:
+    # twitter: jekyllrb
+    github:  moralmk
+    rss: rss
+    # dribbble: jekyll
+    # facebook: jekyll
+    # flickr:   jekyll
+    instagram: ddmk.world
+    linkedin: donghwa-lee-482046162
+    # pinterest: jekyll
+    # youtube: jekyll
+    # youtube_channel: UC8CXR0-3I70i1tfPg1PAE1g
+    # youtube_channel_name: CloudCannon
+    # telegram: jekyll
+    # googleplus: +jekyll
+    # microdotblog: jekyll
+    # keybase: jekyll
 
 google_analytics: UA-154745257-1
 
