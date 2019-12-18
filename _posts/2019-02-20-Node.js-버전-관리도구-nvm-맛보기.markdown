@@ -11,7 +11,8 @@ author: Donghwa Lee
 ![nvm]({{ site.url }}/assets/images/2019-02-20-Nodejs-버전-관리도구-nvm-맛보기.png)
 <br/>
 <br/>
-# **nvm 설치하기**
+
+## nvm 설치하기
 Mac에서 설치하는 것으로 가정하겠습니다. MacOS 패키지 관리자 `brew`를 사용해서 설치할 수 있습니다. 만약 미처 `brew`가 설치되어 있지 않다면, [여기](https://brew.sh/index_ko)를 먼저 참고하세요.
 
 ```shell
@@ -29,13 +30,15 @@ source ~/.bash_profile
 여기까지 해서 지금부터는 `nvm` 명령어를 사용할 수 있습니다.
 <br/>
 <br/>
-# **nvm 통해 node 설치하기**
+
+## nvm 통해 node 설치하기
 10.x 버전 중 가장 최신 버전의 node를 설치하는 명령입니다. 제거는 물론 `install` 옵션 대신 `uninstall` 사용하면 됩니다.
 ```shell
 nvm install 10
 ```
 <br/>
-# **node 버전 전환하기**
+
+## node 버전 전환하기
 7.x 버전을 사용하기 위해 아래 명령을 사용합니다. 7.x 버전이 설치되어 있다면 바로 전환될 것이고, 만약 설치되어 있지 않다면 `nvm install 7`와 같이 설치 명령어가 안내됩니다.
 ```shell
 nvm use 7
