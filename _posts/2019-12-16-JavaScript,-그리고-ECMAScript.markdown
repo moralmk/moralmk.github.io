@@ -17,6 +17,8 @@ Netscape의 설립자 [마크 엔드리슨(Marc Andreessen, 1971)](https://en.wi
 <br/>
 
 ## JavaScript, 그리고 ECMAScript
+![ECMAScript]({{ site.base_url}}/assets/images/2019-12-16-JavaScript,-그리고-ECMAScript.jpg)
+
 Netscape는 JavaScript를 지속적으로 발전시켜 나가기 위해 1996년 이를 ECMA에 공유하고, 표준으로 자리잡게 하기 위한 작업에 기여했습니다. 당시 Microsoft의 Internet Explorer 3에도 *JScript*라는 언어가 탑재되었는데, 이것이 JavsScript와 매우 유사하였고, Netscape는 이에 자극을 받아 표준화를 위한 공개를 결정했을 것이라는 주장이 있기도 합니다.
 
 아무튼 그 뒤 1997년 6월 *ECMAScript* 라는 이름으로 공식 표준안이 수립되었고, JavaScript는 이렇게 스스로 ECMAScript의 Netscape용 방언이 되었습니다. 방언이라지만 출신이 다른 만큼 ECMAScript 표준을 가장 충실하게 구현한 언어입니다. 이후 이 표준안을 기반으로 다수의 방언들이 등장하게 되었고, 그 중 하나가 당시 Macromedia의 Flash(지금은 Adobe의 Flash)에 탑재된 ActionScript가 되겠네요.
