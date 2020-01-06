@@ -8,16 +8,16 @@ author: Donghwa Lee
 ## Create a Native Module
 Native Module을 만드는 가장 손쉬운 방법은 `create-react-native-module`를 사용하는 것입니다. 먼저 이것을 global로 아래와 같이 설치해보겠습니다.
 ```shell
-yarn global add create-react-native-module
+$ yarn global add create-react-native-module
 ```
 방금 설치한 `create-react-native-module`를 통해서 이제 우리가 만들 모듈 생성을 시작해보겠습니다. 모듈 이름은 `MyModule`로 하고, 아래와 같이 생성할 수 있습니다.
 ```shell
-create-react-native-module MyModule
+$ create-react-native-module MyModule
 ```
 모듈 이름으로 지정한 `MyModule`에 따라, `react-native-my-module` 디렉토리가 생성되었고, 해당 디렉토리 안에는 `ios`, `android` 디렉토리와 함께 Native Module을 정의하는데 필요한 기본 세트가 정의되어 있습니다. 이 디렉토리로 이동하고, 관련 dependency 설치를 위해 아래와 같이 명령을 실행합니다.
 ```shell
-cd react-native-my-module
-yarn install
+$ cd react-native-my-module
+$ yarn install
 ```
 자! 이제 Native Module을 개발할 수 있는 기본 준비가 끝났습니다.
 <br/>
@@ -86,7 +86,7 @@ iOS와 마찬가지로 템플릿 메소드가 정의되어 있고, 이름은 `sa
 
 직접 생성한 Native Module이고, 아직 npm 저장소에 배포가 되기 전이라면 `react-native install` 명령을 사용해야 합니다. 먼저 모듈을 설치하고자 하는 프로젝트 디렉토리로 이동해서 Native Module이 위치한 상대 디렉토리 경로와 함께 아래와 같은 명령으로 설치합니다.
 ```shell
-react-native install ../react-native-my-module
+$ react-native install ../react-native-my-module
 ```
 이후 iOS의 경우에는 프로젝트 내 `ios` 폴더에서 `pod install`하게 되면 방금 설치한 `react-native-my-module`이 iOS 프로젝트에 Pod로 인스톨 되어 반드시 여기까지 진행해야 JavaScript에서 호출이 가능합니다.
 

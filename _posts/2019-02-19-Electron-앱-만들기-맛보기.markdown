@@ -14,9 +14,9 @@ Skype, [Github Desktop](https://desktop.github.com/), [GitKraken](https://www.gi
 ## 프로젝트 생성 및 준비
 먼저 프로젝트 폴더를 생성한 후 초기화 합니다. 그리고 electron을 설치합니다. 여기에서 프로젝트명은 `snicat` 으로 하겠습니다.
 ```shell
-mkdir snicat && cd snicat
-npm init
-npm install --save-dev electron
+$ mkdir snicat && cd snicat
+$ npm init
+$ npm install --save-dev electron
 ```
 <br/>
 
@@ -87,5 +87,5 @@ app.on('ready', createWindow);
 ## 애플리케이션 실행
 마지막으로 아래 명령으로 애플리케이션을 실행합니다.
 ```shell
-npm start
+$ npm start
 ```
