@@ -36,7 +36,6 @@ $ git init
 $ git add .
 $ git commit -m "Create react-native project"
 ```
-<br/>
 
 ### 기본 소스 초기화
 프로젝트 기본으로 구현되어 있는 화면 대신, 이 Boilerplate 프로젝트가 가질 화면으로 대체합니다. 기본 화면은 프로젝트 루트에 위치한 `App.js`에 정의되어 있습니다. 이것을 삭제하고, `App`이란 디렉토리와 그 하위에 `index.js`라는 파일을 생성하고 아래 소스를 씁니다.
