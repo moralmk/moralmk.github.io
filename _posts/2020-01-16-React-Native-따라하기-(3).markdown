@@ -31,6 +31,7 @@ const styles = StyleSheet.create({
   },
 });
 ```
+<br/>
 
 ### Navigation 정의
 네비게이션을 정의한 `App/navigators/StackNavigator.js` 파일에 방금 작성한 `SubScreen.js`를 추가합니다.
@@ -46,6 +47,7 @@ export default createStackNavigator({
   Sub: SubScreen, // Sub Screen 추가
 });
 ```
+<br/>
 
 ### 버튼 이벤트 추가
 마지막으로 홈 화면 안에 Sub 화면으로 이동하게끔 하는 버튼을 추가하고 이벤트를 정의합니다.
