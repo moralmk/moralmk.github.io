@@ -1,11 +1,12 @@
 ---
 layout: post
-title:  "React Native Boilerplate 만들기 (2)"
+title:  "React Native 따라하기 (2)"
 date:   2020-01-16 10:10:10 +0900
 categories: react-native
 author: Donghwa Lee
 ---
-## react-navigation 기본 설치
+## Navigation
+### react-navigation 기본 설치
 다양한 navigation 라이브러리들이 있지만 그 중에서 [React Navigation](https://reactnavigation.org/)을 사용합니다. 프로젝트 디렉토리에서 아래와 같이 react-navigation 모듈을 설치합니다.
 
 ```shell
@@ -26,7 +27,7 @@ $ cd ..
 ```
 <br/>
 
-## Stack Navigator 구현
+### Stack Navigator 구현
 Stack Navigator에 필요한 모듈들을 설치합니다.
 
 ```shell
@@ -38,14 +39,14 @@ $ cd ios
 $ pod install
 $ cd ..
 ```
-### Home Screen 생성
+#### Home Screen 생성
 Stack Navigator에서 사용할 기본 화면을 정의합니다. 이전 포스트에서 `App/index.js` 파일에서 화면 요소들을 정의한 것과 내용은 동일합니다. 다만 이제 디렉토리를 구분하겠습니다. `App` 디렉토리 내에 `screens`라는 디렉토리를 생성하고, 그 안에 아래와 같은 소스로 `HomeScreen.js` 파일을 만듭니다.
 
 ```react
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 
-export default class App extends React.Component {
+export default class HomeScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
@@ -63,7 +64,7 @@ const styles = StyleSheet.create({
   },
 });
 ```
-### Stack Navigator 생성
+#### Stack Navigator 생성
 `App` 디렉토리 내에 `navigators`라는 디렉토리를 생성하고, 아래와 같은 소스로 `StackNavigator.js` 파일을 만듭니다.
 ```react
 import { createStackNavigator } from 'react-navigation-stack';
@@ -75,7 +76,7 @@ export default createStackNavigator({
 });
 ```
 
-### App Container 생성
+#### App Container 생성
 `HomeScreen.js`으로 화면을 정의했고, 이 화면으로 구성되는 Stack Navigator를 `StackNavigator.js`로 정의했습니다. 이제 이 Stack Navigator가 실질적으로 앱에서 사용될 수 있도록 합니다. `App/index.js`을 아래와 같이 편집합니다.
 ```react
 import { createAppContainer } from 'react-navigation';
