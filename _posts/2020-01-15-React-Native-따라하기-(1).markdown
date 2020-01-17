@@ -1,11 +1,12 @@
 ---
 layout: post
-title:  "React Native Boilerplate 만들기 (1)"
+title:  "React Native 따라하기 (1)"
 date:   2020-01-15 22:22:22 +0900
 categories: react-native
 author: Donghwa Lee
 ---
-## 새로운 프로젝트 만들기
+## Create a project
+### 새로운 프로젝트 생성
 프로젝트 이름을 `RNBoilerplate`로 하여 새로운 프로젝트를 만듭니다.
 
 ```shell
@@ -23,8 +24,8 @@ $ npx react-native run-ios
 <br/>
 <br/>
 
-## 프로젝트 개발 준비
-### Git 초기화
+### 프로젝트 개발 준비
+#### Git 초기화
 개발소스 형상관리를 위해 Git을 사용합니다. 프로젝트 디렉토리에서 Git 초기화 명령을 합니다.
 
 ```shell
@@ -37,7 +38,7 @@ $ git add .
 $ git commit -m "Create react-native project"
 ```
 
-### 기본 소스 초기화
+#### 기본 소스 초기화
 프로젝트 기본으로 구현되어 있는 화면 대신, 이 Boilerplate 프로젝트가 가질 화면으로 대체합니다. 기본 화면은 프로젝트 루트에 위치한 `App.js`에 정의되어 있습니다. 이것을 삭제하고, `App`이란 디렉토리와 그 하위에 `index.js`라는 파일을 생성하고 아래 소스를 씁니다.
 
 ```react
