@@ -18,7 +18,7 @@ $ npx react-native init RNBoilerplate
 $ cd ./RNBoilerplate
 $ npx react-native run-ios
 ```
-자동으로 터미널에서 Metro Bundler가 실행되고, 이어서 Simulator가 실행되어 잠시 뒤 아래와 같이 프로젝트 기본 화면이 볼 수 있습니다.
+자동으로 터미널에서 Metro Bundler가 실행되고, 이어서 Simulator가 실행되어 잠시 뒤 아래와 같이 프로젝트 기본 화면을 볼 수 있습니다.
 
 <img src="{{ site.url }}/assets/images/2020-01-15-01.png" width="320" />
 <br/>
