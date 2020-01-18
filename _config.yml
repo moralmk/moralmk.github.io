@@ -22,7 +22,7 @@ title: Monkey on the Mac
 email: moralmk@gmail.com
 author: Donghwa Lee
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://moralmk.github.io/" # the base hostname & protocol for your site, e.g. http://example.com
+url: "https://moralmk.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 
 # Build settings
 theme: minima
