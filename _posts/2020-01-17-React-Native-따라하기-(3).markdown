@@ -1,12 +1,12 @@
 ---
 layout: post
 title:  "React Native 따라하기 (3)"
-date:   2020-01-17 09:09:09 +0900
+date:   2020-01-17 11:25:49 +0900
 categories: react-native
 author: Donghwa Lee
 ---
 ## Stack Navigation
-### SubScreen 생성
+### Sub Screen 생성
 Stack Navigator에 기반해 홈 화면에서 다른 화면으로 이동하도록 하겠습니다. 먼저 `App/screens` 디렉토리 안에 이동할 목적지 화면 `SubScreen.js`을 아래 소스로 작성합니다.
 
 ```react

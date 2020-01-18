@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "React Native 따라하기 (2)"
-date:   2020-01-16 10:10:10 +0900
+date:   2020-01-16 10:51:28 +0900
 categories: react-native
 author: Donghwa Lee
 ---
