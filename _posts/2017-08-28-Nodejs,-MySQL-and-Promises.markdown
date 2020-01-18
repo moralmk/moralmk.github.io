@@ -55,33 +55,7 @@ connection.query('SELECT * FROM some_table', (err, rows) => {
 Promises가 이러한 문제들을 해결할 수 있습니다. Promise 개념이 익숙하지 않다면 사전에 소개를 읽는 것이 좋습니다. (예 : 여기 또는 여기) 저는 순차적인 데이터베이스 쿼리 수행에 있어서 Promise의 실제적인 사용법을 보여주고자 합니다. 그래서 저는 일단 당신이 기본적인 개념에 대해서는 이미 알고 있다고 가정하겠습니다.
 
 먼저 데이터베이스 클라이언트를 ‘Promisfy’ 해야 합니다. 수동으로 할 필요는 없습니다. 여기에 설명된 것과 같이 자동화 도구를 사용할 수도 있지만 MySQL 클라이언트에 대한 Wrapper 클래스를 만드는 것은 매우 간단합니다.
-
-```javascript
-const mysql = require('mysql');
-class Database {
-  constructor(config) {
-    this.connection = mysql.createConnection(config);
-  }
-  query(sql, args) {
-    return new Promise((resolve, reject) => {
-      this.connection.query(sql, args, (err, rows) => {
-        if (err)
-          return reject(err);
-        resolve(rows);
-      });
-    });
-  }
-  close() {
-    return new Promise((resolve, reject) => {
-      this.connection.end(err => {
-        if (err)
-          return reject(err);
-        resolve();
-      });
-    });
-  }
-}
-```
+{% gist moralmk/fac720c09c7ca382067b30ad030d0048 usingPromises.js %}
 
 생성자는 createConnection()으로 간단하게 MySQL에 연결합니다. 선언 시점에 연결이 되지 않고 첫 번째 쿼리가 실행될 때 자동으로 연결됩니다. 그래서 연결을 만드는 것이 비동기 작업이 아닙니다.
 
@@ -113,22 +87,7 @@ database.query('SELECT * FROM some_table')
 
 ## Extracting the results
 첫 번째 문제는 각 callback 함수에서 마지막 쿼리의 결과만을 액세스 할 수 있다는 것입니다. 따라서 두 쿼리의 결과를 이용해서 무언가를 가공하고 싶다면 로컬 변수에 저장해야 합니다.
-
-```javascript
-let someRows, otherRows;
-database.query('SELECT * FROM some_table')
-  .then(rows => {
-    someRows = rows;
-    return database.query('SELECT * FROM other_table');
-  })
-  .then(rows => {
-    otherRows = rows;
-    return database.close();
-  })
-  .then(() => {
-    // do something with someRows and otherRows
-  });
-```
+{% gist moralmk/fac720c09c7ca382067b30ad030d0048 extracting.js %}
 
 쿼리들의 결과를 다음 then()에서 사용하려면 함수가 query() 메서드에서 Promise를 반환해야 합니다. 만약 return 키워드를 쓰지 않는다면 다음의 then() 메서드에서 이전 쿼리의 결과는 undefined 입니다.
 <br/>
@@ -142,61 +101,15 @@ Promise를 사용하면 체인의 끝에 하나의 catch() 함수를 추가하�
 이 솔루션의 문제점은 오류가 발생하면 데이터베이스 연결이 끊어지지 않는다는 것입니다. 동기식 프로그램에서는 try/catch 블록에 finally 절을 추가해서 이를 방지할 수 있지만, 아쉽게도 JavaScript Promise에는 finally() 메서드가 없습니다.
 
 오류가 발생하더라도 데이터베이스 연결이 잘 닫히도록 하려면 다음과 같이 쓸 수 있습니다.
-
-```javascript
-let someRows, otherRows;
-database.query('SELECT * FROM some_table')
-  .then(rows => {
-    someRows = rows;
-    return database.query('SELECT * FROM other_table');
-  })
-  .then(rows => {
-    otherRows = rows;
-    return database.close();
-  }, err => {
-    return database.close().then(() => { throw err; })
-  })
-  .then(() => {
-    // do something with someRows and otherRows
-  }
-  .catch(err => {
-    // handle the error
-  });
-```
+{% gist moralmk/fac720c09c7ca382067b30ad030d0048 errorHandling.js %}
 
 then()에 전달된 두 번째 함수(굵은 글꼴로 표시)는 체인의 이전 단계에서 오류가 발생되면 호출됩니다. 그럼 여기에서 데이터베이스 연결을 닫은 다음 오류를 다시 throw하여 최종적으로 catch()에 도달하게 합니다.
 
 이 패턴을 자주 사용하는 경우 다음과 같이 별도의 함수로 연결을 만들고 닫을 수 있습니다.
-
-```javascript
-Database.execute = function(config, callback) {
-  const database = new Database(config);
-  return callback(database).then(
-    result => database.close().then(() => result),
-    err => database.close().then(() => { throw err; })
-  );
-};
-```
+{% gist moralmk/fac720c09c7ca382067b30ad030d0048 dbExecute.js %}
 
 다음은 위 함수를 사용하여 다시 작성한 내용입니다.
-
-```javascript
-let someRows, otherRows;
-Database.execute(config,
-  database => database.query('SELECT * FROM some_table')
-    .then(rows => {
-      someRows = rows;
-      return database.query('SELECT * FROM other_table')
-    })
-    .then(rows => {
-      otherRows = rows;
-    });
-).then(() => {
-  // do something with someRows and otherRows
-}).catch( err => {
-  // handle the error
-});
-```
+{% gist moralmk/fac720c09c7ca382067b30ad030d0048 final.js %}
 
 비슷한 기술을 사용하여 트랜잭션을 래핑할 수 있습니다. 트랜잭션은 모든 쿼리가 성공적으로 실행되거나 중간에 오류가 발생하면 rollback 될 때 자동으로 commit 합니다.
 <br/>

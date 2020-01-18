@@ -25,56 +25,14 @@ $ yarn install
 
 ## iOS Module
 하위 디렉토리로 `android`, `ios`가 생성되어 있을텐데요. 우리는 먼저 ios 모듈 부터 작업해보겠습니다. `ios` 디렉토리에는 `MyModule.h`, `MyModule.m` 두 파일과 나머지 두 디렉토리가 있습니다. 우리가 작업할 대상은 이 중에서도 `MyModule.m`입니다. 아래는 초기 `MyModule.m`의 내용입니다.
-```c
-#import "MyModule.h"
-
-@implementation MyModule
-
-RCT_EXPORT_MODULE()
-
-RCT_EXPORT_METHOD(sampleMethod:(NSString *)stringArgument numberParameter:(nonnull NSNumber *)numberArgument callback:(RCTResponseSenderBlock)callback)
-{
-    // TODO: Implement some actually useful functionality
-    callback(@[[NSString stringWithFormat: @"numberArgument: %@ stringArgument: %@", numberArgument, stringArgument]]);
-}
-
-@end
-```
+{% gist moralmk/9d0b74f05f09f4c8e92c02d16ad867ac MyModule.m %}
 기본으로 셋업되는 템플릿 소스를 확인할 수 있습니다. `sampleMethod`라는 이름을 가지며, 세 가지 인자를 받네요. 첫 번째는 `NSString` 타입, 두 번째는 `NSNumber` 타입, 마지막은 `callback` 함수로 보여집니다. 수행하는 일은 인자로 받은 callback 함수를 호출하면서 동시에 함께 받은 문자열과 숫자를 전달하네요. 우리는 추가 내용 없이 이 코드를 예시로 다음으로 진행하겠습니다.
 <br/>
 <br/>
 
 ## Android Module
-`android` 디렉토리 하위 `src/main/java/com/reactlibrary`에 까지 이동하면 `MyModuleModule.java`, 그리고 `MyModulePackage.java` 두 개의 파일이 있습니다. 메소드를 정의하고 주요 코드를 작성할 파일은 `MyModuleModule.java`입니다. 초기 내용은 아래와 같습니다.
-```java
-package com.reactlibrary;
-
-import com.facebook.react.bridge.ReactApplicationContext;
-import com.facebook.react.bridge.ReactContextBaseJavaModule;
-import com.facebook.react.bridge.ReactMethod;
-import com.facebook.react.bridge.Callback;
-
-public class ResizeImageModule extends ReactContextBaseJavaModule {
-
-    private final ReactApplicationContext reactContext;
-
-    public ResizeImageModule(ReactApplicationContext reactContext) {
-        super(reactContext);
-        this.reactContext = reactContext;
-    }
-
-    @Override
-    public String getName() {
-        return "ResizeImage";
-    }
-
-    @ReactMethod
-    public void sampleMethod(String stringArgument, int numberArgument, Callback callback) {
-        // TODO: Implement some actually useful functionality
-        callback.invoke("Received numberArgument: " + numberArgument + " stringArgument: " + stringArgument);
-    }
-}
-```
+`android` 디렉토리 하위 `src/main/java/com/reactlibrary`에 까지 이동하면 `MyModule.java`, 그리고 `MyModulePackage.java` 두 개의 파일이 있습니다. 메소드를 정의하고 주요 코드를 작성할 파일은 `MyModuleModule.java`입니다. 초기 내용은 아래와 같습니다.
+{% gist moralmk/9d0b74f05f09f4c8e92c02d16ad867ac MyModule.java %}
 
 iOS와 마찬가지로 템플릿 메소드가 정의되어 있고, 이름은 `sampleMethod`, `String` 타입 인자와 `int` 타입 인자, `callback`을 전달하며, 수행하는 작업도 동일합니다.
 <br/>

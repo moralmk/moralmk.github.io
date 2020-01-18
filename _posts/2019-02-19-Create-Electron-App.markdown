@@ -22,39 +22,12 @@ $ npm install --save-dev electron
 
 ## 애플리케이션 구동 파일 작성
 `main.js` 파일을 작성합니다. 애플리케이션이 준비되면 브라우저 윈도우를 800x600 사이즈로 생성한 뒤 `index.html` 페이지를 표시하는 내용입니다.
-
-```javascript
-const { app, BrowserWindow } = require('electron');
-
-function createWindow () {
-  // 브라우저 창을 생성합니다.
-  let win = new BrowserWindow({ width: 800, height: 600 });
-
-  // and load the index.html of the app.
-  win.loadFile('index.html');
-}
-
-app.on('ready', createWindow);
-```
+{% gist moralmk/aa01da085027a5b36836121ed6e4d2b3 main.js %}
 <br/>
 
 ## 페이지 파일 작성
 `index.html` 파일을 작성합니다.
-```html
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Hello World!</title>
-  </head>
-  <body>
-    <h1>Hello World!</h1>
-    We are using node<script>document.write(process.versions.node)</script>,
-    Chrome <script>document.write(process.versions.chrome)</script>,
-    and Electron <script>document.write(process.versions.electron)</script>.
-  </body>
-</html>
-```
+{% gist moralmk/aa01da085027a5b36836121ed6e4d2b3 index.html %}
 이와 같은 결과를 보여주는 페이지입니다.
 ![Hello World!]({{ site.url }}/assets/images/2019-02-19-Electron-앱-만들기-맛보기.png)
 <br/>
@@ -62,24 +35,7 @@ app.on('ready', createWindow);
 
 ## 실행 스크립트 추가
 프로젝트 초기화 시에 생성된 `package.json` 내용을 수정합니다.
-
-```json
-{
-  "name": "snicat",
-  "version": "1.0.0",
-  "description": "",
-  "main": "main.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "electron ."
-  },
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "electron": "^4.0.5"
-  }
-}
-```
+{% gist moralmk/aa01da085027a5b36836121ed6e4d2b3 package.json %}
 5번째 라인은 앞서 작성한 `main.js` 파일입니다. 그리고 8번째 라인은 애플리케이션 실행을 위한 스크립트 명령입니다.
 <br/>
 <br/>

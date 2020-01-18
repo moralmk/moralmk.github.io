@@ -35,22 +35,7 @@ Cheerio를 사용하면 다운로드한 웹 페이지 소스를 jQuery와 동일
 
 ## Implementation
 아래 코드는 날씨 웹 사이트에서 온도를 감지할 수 있는 작은 애플리케이션입니다. URL의 끝에 지역번호가 붙는 것을 확인할 수 있고, 이 지역번호에 따라 해당 지역의 날씨정보를 얻을 수 있습니다.
-
-```javascript
-var request = require("request");
-var cheerio = require("cheerio");
-var url = "http://www.wunderground.com/cgi-bin/findweather/getForecast?&query=" + 02888;
-  
-request(url, function (error, response, body) {
-  if (!error) {
-    var $ = cheerio.load(body);
-    var temperature = $("[data-variable='temperature'] .wx-value").html();
-    console.log("It’s " + temperature + " degrees Fahrenheit.");
-  } else {
-    console.log("We’ve encountered an error: " + error);
-  }
-});
-```
+{% gist moralmk/ed783e9ae0fe049e9911a1a76377d4b2 implementation.js %}
 먼저 모듈을 액세스 할 수 있도록 모듈을 선언합니다. 그런 다음 url 변수에 다운로드 할 URL을 정의합니다.
 
 Request 모듈을 사용해서 위에 지정된 URL에서 페이지를 다운로드합니다. Request 함수에 다운로드하고자하는 URL과 요청결과를 처리할 콜백 함수를 전달합니다. 페이지가 다운로드 되면 콜백이 호출되고 오류, 응답 및 본문 세 가지 변수가 전달됩니다. 요청에서 웹 페이지를 다운로드하는 데 문제가 발생하여 데이터를 검색할 수 없는 경우 오류 객체가 함수에 전달되고 본문 변수는 null이 됩니다. 데이터 작업을 시작하기 전에 오류가 없는지 확인합니다. 만약 오류가 있다면, 오류 내용이 무엇인지 볼 수 있도록 로그를 남깁니다.
@@ -84,34 +69,7 @@ Request 모듈을 사용해서 위에 지정된 URL에서 페이지를 다운로
 우리가 해야할 첫 번째 일은 분석할 페이지를 찾는 것입니다. Google 검색에서 가져온 페이지를 보고 있기 때문에 원하는 검색을 위한 URL을 찾고 다운로드하고 결과를 분석해서 필요한 URL을 찾을 수 있습니다.
 
 위의 예제에서처럼 Request를 사용하는 페이지를 다운로드하고 분석하기 위해 Cheerio를 다시 사용하겠습니다. 코드는 다음과 같습니다.
-
-```javascript
-request(url, function (error, response, body) {
-  if (error) {
-    console.log(“Couldn’t get page because of error: “ + error);
-    return;
-  }
-  
-  // load the body of the page into Cheerio so we can traverse the DOM
-  var $ = cheerio.load(body);
-  var links = $(".r a");
-    
-  links.each(function (i, link) {
-    // get the href attribute of each link
-    var url = $(link).attr("href");
-    
-    // strip out unnecessary junk
-    url = url.replace("/url?q=", "").split("&")[0];
-    
-    if (url.charAt(0) === "/") {
-      return;
-    }
-    
-    // this link counts as a result, so increment results
-    totalResults++;
-  }
-}
-```
+{% gist moralmk/ed783e9ae0fe049e9911a1a76377d4b2 downloading.js %}
 
 이 경우 전달할 URL 변수는 Google에서 ‘Data Ming’이라는 용어를 검색한 것입니다.
 
@@ -121,14 +79,7 @@ request(url, function (error, response, body) {
 
 ### PULLING THE WORDS FROM EACH PAGE
 이제 우리 페이지의 URL을 얻었으므로 각 페이지에서 단어를 가져와야 합니다. 이 단계는 위에서 수행한 것과 거의 동일한 작업을 수행하는 것으로 구성됩니다. 이 경우 URL 변수는 위 반복구문에서 찾은, 처리된 페이지의 URL을 참조합니다.
-
-```javascript
-request(url, function (error, response, body) {
-  // load the page into Cheerio
-  var $page = cheerio.load(body);
-  var text = $page("body").text();
-}
-```
+{% gist moralmk/ed783e9ae0fe049e9911a1a76377d4b2 pulling.js %}
 
 다시 말하지만 Request와 Cheerio를 사용하여 페이지를 다운로드하고, DOM에 접근할 수 있습니다. 여기에서는 페이지의 텍스트 만 가져옵니다.
 
@@ -141,73 +92,13 @@ request(url, function (error, response, body) {
 일단 우리가 텍스트를 공백으로 나누면 페이지에 렝더링된 모든 단어가 들어있는 배열을 얻을 수 있습니다. 그런 다음 루프를 반복하여 변수 ‘corpus’에 추가할 수 있습니다.
 
 코드로 보자면 다음과 같습니다.
-
-```javascript
-// Throw away extra white space and non-alphanumeric characters.
-text = text.replace(/\s+/g, " ")
-       .replace(/[^a-zA-Z ]/g, "")
-       .toLowerCase();
-
-// Split on spaces for a list of all the words on that page and loop through that list.
-text.split(" ").forEach(function (word) {
-  // We don't want to include very short or long words because they're probably bad data.
-  if (word.length > 20) {
-    return;
-  }
-        
-  if (corpus[word]) {
-    // If this word is already in our corpus, our collection of terms, increase the count for appearances of that word by one.
-    corpus[word]++;
-  } else {
-    // Otherwise, say that we've found one of that word so far.
-    corpus[word] = 1;
-  }
-});
-```
+{% gist moralmk/ed783e9ae0fe049e9911a1a76377d4b2 textSplit.js %}
 
 ### ANALYZING OUR WORDS
 일단 모든 단어들을 변수 ‘corpus’에 데이터로 갖게 되면, 그것을 반복해서 인기에 따라 분류할 수 있습니다. 먼저 corpus가 객체이기 때문에 배열로 가공하겠습니다.
-
-```javascript
-// stick all words in an array
-for (prop in corpus) {
-  words.push({
-    word: prop,
-    count: corpus[prop]
-  });
-}
-  
-// sort array based on how often they occur
-words.sort(function (a, b) {
-  return b.count - a.count;
-});
-```
+{% gist moralmk/ed783e9ae0fe049e9911a1a76377d4b2 analyzing.js %}
 
 결과는 Google 검색 결과의 첫 페이지에 있는 모든 웹 사이트에서 각 단어가 얼마나 자주 사용되었는지를 나타내는 정렬된 배열입니다. 아래는 ‘Data Mining’이라는 검색어에 대한 결과 예시입니다.
-
-```javascript
-[
-  { word: 'data', count: 981 },
-  { word: 'mining', count: 531 },
-  { word: 'that', count: 187 },
-  { word: 'analysis', count: 120 },
-  { word: 'information', count: 113 },
-  { word: 'from', count: 102 },
-  { word: 'this', count: 97 },
-  { word: 'with', count: 92 },
-  { word: 'software', count: 81 },
-  { word: 'knowledge', count: 79 },
-  { word: 'used', count: 78 },
-  { word: 'patterns', count: 72 },
-  { word: 'learning', count: 70 },
-  { word: 'example', count: 70 },
-  { word: 'which', count: 69 },
-  { word: 'more', count: 68 },
-  { word: 'discovery', count: 67 },
-  { word: 'such', count: 67 },
-  { word: 'techniques', count: 66 },
-  { word: 'process', count: 59 }
-]
-```
+{% gist moralmk/ed783e9ae0fe049e9911a1a76377d4b2 result.js %}
 
 앞으로 이 애플리케이션을 한 단계 업그레이드 할 수도 있겠습니다. 텍스트 파싱을 최적화하고, 검색 결과를 Google 결과의 여러 페이지로 확장하고, 핵심 용어가 아닌 일반적인 단어들은 제거할 수도 있습니다.
