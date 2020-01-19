@@ -2,7 +2,7 @@
 layout: post
 title:  "Hybrid Apps And React Native: A Time To Transition?"
 date:   2017-08-23 22:22:22 +0900
-categories: nodejs
+categories: react-native
 author: Donghwa Lee
 ---
 번역 원문 :
