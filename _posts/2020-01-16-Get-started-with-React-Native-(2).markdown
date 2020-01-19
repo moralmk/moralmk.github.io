@@ -1,11 +1,12 @@
 ---
 layout: post
-title:  "React Native 따라하기 (2)"
+title:  "React Native 따라하기 (2) : Navigation"
 date:   2020-01-16 10:51:28 +0900
 categories: react-native
 author: Donghwa Lee
 ---
-## Navigation
+![React Navigation]({{ site.url }}/assets/images/2020-01-16/01.jpg)
+
 ### react-navigation 기본 설치
 다양한 navigation 라이브러리들이 있지만 그 중에서 [React Navigation](https://reactnavigation.org/)을 사용합니다. 프로젝트 디렉토리에서 아래와 같이 react-navigation 모듈을 설치합니다.
 
@@ -88,7 +89,7 @@ export default createAppContainer(StackNavigator);
 
 신규 파일들을 다수 만들었고, iOS Pod를 다수 설치했기 때문에 Metro Bundler를 다시 실행하고, 앱을 리로드합니다. 아래와 같이 Stack Navigator가 적용되면서 화면 상단에 Navigation bar가 생겼고, 기본 화면으로 Home Screen이 보입니다.
 
-<img src="{{ site.url }}/assets/images/2020-01-16-01.png" width="320" />
+<img src="{{ site.url }}/assets/images/2020-01-16/02.png" width="320" />
 
 지금까지의 작업을 commit 합니다.
 

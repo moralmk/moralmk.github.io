@@ -8,7 +8,7 @@ author: Donghwa Lee
 ## Node.js 설치
 [https://nodejs.org/en/](https://nodejs.org/en/)으로 이동합니다. LTS(Long Term Support) 버전과, 가장 최신의 Current, 두 가지를 다운로드 할 수 있는 녹색 버튼이 있습니다. 가장 최신의 사양을 필요로 하는 아주 특별한 경우가 아니면, LTS 버전으로 설치하기를 추천합니다.
 
-![Node.js]({{ site.url }}/assets/images/2020-01-05-01.png)
+![Node.js]({{ site.url }}/assets/images/2020-01-05/01.png)
 
 터미널에서 아래와 같이 설치된 Node.js의 버전을 확인함으로써 정상설치 여부를 확인할 수 있습니다.
 ```shell
@@ -20,7 +20,7 @@ v12.14.0
 ## Visual Studio Code 설치
 [https://code.visualstudio.com/](https://code.visualstudio.com/)에서 다운로드 할 수 있습니다.
 
-![VSCode]({{ site.url }}/assets/images/2020-01-05-02.png)
+![VSCode]({{ site.url }}/assets/images/2020-01-05/02.png)
 
 ### Extension 설치
 VSCode 사용을 편리하게 하는 각종 확장도구들을 설치합니다. VSCode 실행 후 `command + shift + X`로 Extensions View를 열고, 설치할 Extension을 검색 후 Install 버튼으로 설치합니다. 아래는 몇 가지 추천하는 Extension들입니다.
@@ -40,7 +40,7 @@ VSCode 사용을 편리하게 하는 각종 확장도구들을 설치합니다. 
 ## iTerm2 설치
 macOS에서 기본으로 제공하는 터미널이 있지만 그보다 훨씬 강력한 기능을 가진 [iTerm2](https://iterm2.com/downloads.html) 터미널 에뮬레이터를  추천합니다.
 
-![iTerm2]({{ site.url }}/assets/images/2020-01-05-03.png)
+![iTerm2]({{ site.url }}/assets/images/2020-01-05/03.png)
 <br/>
 <br/>
 

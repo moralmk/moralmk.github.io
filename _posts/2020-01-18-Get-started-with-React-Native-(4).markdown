@@ -1,11 +1,10 @@
 ---
 layout: post
-title:  "React Native 따라하기 (4)"
+title:  "React Native 따라하기 (4) : Drawer Navigation"
 date:   2020-01-18 10:26:31 +0900
 categories: react-native
 author: Donghwa Lee
 ---
-## Drawer Navigation
 ### react-navigation-drawer 모듈 설치
 Drawer Navigator 구현을 위해 필요한 `react-navigation-drawer` 모듈을 아래와 같이 설치합니다.
 
@@ -77,8 +76,8 @@ openDrawer = () => {
 
 이제 홈 화면에 Drawer를 오픈하는 버튼이 추가되었고, 해당 버튼을 누르면 Drawer가 열립니다.
 
-<img src="{{ site.url }}/assets/images/2020-01-18-01.png" width="320" />
-<img src="{{ site.url }}/assets/images/2020-01-18-02.png" width="320" />
+<img src="{{ site.url }}/assets/images/2020-01-18/01.png" width="320" />
+<img src="{{ site.url }}/assets/images/2020-01-18/02.png" width="320" />
 
 지금까지의 작업을 commit 합니다.
 

@@ -1,11 +1,12 @@
 ---
 layout: post
-title:  "React Native 따라하기 (1)"
+title:  "React Native 따라하기 (1) : Create a project"
 date:   2020-01-15 22:22:22 +0900
 categories: react-native
 author: Donghwa Lee
 ---
-## Create a project
+![React-Native]({{ site.url }}/assets/images/2020-01-15/00.png)
+
 ### 새로운 프로젝트 생성
 프로젝트 이름을 `RNBoilerplate`로 하여 새로운 프로젝트를 만듭니다.
 
@@ -20,7 +21,7 @@ $ npx react-native run-ios
 ```
 자동으로 터미널에서 Metro Bundler가 실행되고, 이어서 Simulator가 실행되어 잠시 뒤 아래와 같이 프로젝트 기본 화면을 볼 수 있습니다.
 
-<img src="{{ site.url }}/assets/images/2020-01-15-01.png" width="320" />
+<img src="{{ site.url }}/assets/images/2020-01-15/01.png" width="320" />
 <br/>
 <br/>
 
@@ -70,7 +71,7 @@ $ npm start
 ```
 Simulator에서 Cmd + R 키로 앱을 reload 합니다. 여기까지 아래와 같은 화면을 볼 수 있습니다.
 
-<img src="{{ site.url }}/assets/images/2020-01-15-02.png" width="320" />
+<img src="{{ site.url }}/assets/images/2020-01-15/02.png" width="320" />
 
 지금까지의 작업을 commit 합니다.
 
