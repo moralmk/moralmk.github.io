@@ -15,46 +15,12 @@ $ npm install --save react-navigation-drawer
 
 ### Drawer Screen 생성
 Drawer 화면에 해당하는 파일을 `App/screens` 디렉토리 내 `DrawerScreen.js` 파일명으로 아래와 같이 작성합니다.
-
-```react
-import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
-
-export default class DrawerScreen extends React.Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text>Drawer Screen</Text>
-      </View>
-    );
-  }
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
-```
+{% gist moralmk/9e478c26e18a64ec52462883265cd79a DrawerScreen.js %}
 <br/>
 
 ### Navigation 정의
 Stack Navigator에 이어 Drawer 네비게이션을 정의할 Navigator를 `App/navigators` 디렉토리 내 `DrawerNavigator.js` 파일로 작성합니다. Drawer Navigator는 Stack Navigator를 포함하고, Drawer에서 사용할 Content component로 방금 작성한 `DrawerScreen.js`를 정의합니다.
-
-```react
-import { createDrawerNavigator } from 'react-navigation-drawer';
-
-import StackNavigator from './StackNavigator';
-import DrawerScreen from '../screens/DrawerScreen';
-
-export default createDrawerNavigator({
-  Default: StackNavigator, // Stack Navigator 포함
-}, {
-  contentComponent: DrawerScreen, // Content component 정의
-});
-```
+{% gist moralmk/9e478c26e18a64ec52462883265cd79a DrawerNavigator.js %}
 <br/>
 
 ### Open Drawer 버튼 이벤트
